@@ -1,10 +1,4 @@
 <?php
-/*
-*/
-
-// tes service localhost
-define('_FHIR_BASE_URL_','http://dhiya/emr/rest.php/api/fhir/v1');
-define('_FHIR_AUTH_URL_','http://dhiya/emr/rest.php/api/oauth2/v1');
 
 require_once dirname(__DIR__) . '/fhir.php';
 $body=<<<BODY
@@ -88,7 +82,7 @@ $body=<<<BODY
 }
 BODY;
 
-$out=fhir::request('organization', 'GET',$body);
+$out=fhir::request('Organization', 'GET',$body);
 
 echo json_encode($out);
 header('Content-Type: application/json');
