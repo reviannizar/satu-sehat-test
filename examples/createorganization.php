@@ -82,7 +82,7 @@ $body=<<<BODY
 }
 BODY;
 
-$out=fhir::request('Organization', 'GET',$body);
+$out=fhir::request('Organization', 'POST',$body);
 
 echo json_encode($out);
 header('Content-Type: application/json');

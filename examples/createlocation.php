@@ -95,7 +95,7 @@ $body=<<<BODY
 }
 BODY;
 
-$out=fhir::request('Location', 'GET',$body);
+$out=fhir::request('Location', 'POST',$body);
 
 echo json_encode($out);
 header('Content-Type: application/json');
