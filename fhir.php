@@ -30,7 +30,11 @@ class fhir {
 	private static function send($url,$method,$body='',$headers=[],$options=[]){
 		$client = new Client();
 		$request = new Request($method, $url, $headers, $body);
-		$res = $client->send($request, $options);
+		try { 
+			$res = $client->send($request, $options); 
+		}catch (ClientException $e) { 
+			$res = $e->getResponse();	
+		}
 		return json_decode($res->getBody()->getContents(),true);
 	}
 	
@@ -65,7 +69,7 @@ class fhir {
 	public static function request($url,$method,$body=''){
 		$token=self::getToken();
 		$headers = ['Content-Type'=>'application/json','Authorization'=>'Bearer '.$token,];	
-		return self::send(_FHIR_BASE_URL_ . "/$url",$method,$body,$headers);
+		return self::send($url,$method,$body,$headers);
 	}
 	
 }
